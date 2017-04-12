@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .star{color:red;}
+        #num{float:right;}
+        #inputarea{width:100%; height:200px;}
+        .tip{color:red;display:none;}
+    </style>
+</head>
+<body>
+    <div>
+        <span class="star">*</span>
+        <strong>請填寫備註</strong>
+        <span id="num">(0/200)</span>
+    </div>
+
+    <div>
+        <input type="textarea" id="inputarea" placeholder="最多輸入200個字符">
+    </div>
+
+    <div class="tip">
+        <img src="error.jpg">
+        <span>此項內容填寫長度不能超過200個字符哦</span>
+    </div>
+
+</body>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#inputarea").bind('input propertychange',function () {
+                    var words = $("#inputarea").val().length;
+                    console.log(words);
+                    if(words > 200)
+                        $(".tip").css("display","block");
+                    else if(words <= 200 && $(".tip").css("display") == "block")
+                        $(".tip").css("display","none");
+                    $("#num").text("(" + words + "/200)");
+                })
+            });
+        </script>
+</html>
